@@ -1,0 +1,19 @@
+{
+  "name": "baristamatic",
+  "version": "1.0.0",
+  "description": "A simulator of an automatic coffee dispensing machine",
+  "main": "index.js",
+  "scripts": {
+
+    "start": "node index.js"
+  },
+  "keywords": [
+    "CLI"
+  ],
+  "author": "Eric Roth",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "clear": "^0.1.0"
+  }
+}
