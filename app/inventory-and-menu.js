@@ -2,47 +2,47 @@ let inventory = {
   coffee: {
     name: 'Coffee',
     unitCost: 0.75,
-    available: 10
+    stock: 10
   },
   decafCoffee: {
     name: 'Decaf Coffee',
     unitCost: 0.75,
-    available: 10
+    stock: 10
   },
   sugar: {
     name: 'Sugar',
     unitCost: 0.25,
-    available: 10
+    stock: 10
   },
   cream: {
     name: 'Cream',
     unitCost: 0.25,
-    available: 10
+    stock: 10
   },
   steamedMilk: {
     name: 'Steamed Milk',
     unitCost: 0.35,
-    available: 10
+    stock: 10
   },
   foamedMilk: {
     name: 'Foamed Milk',
     unitCost: 0.35,
-    available: 10
+    stock: 10
   },
   espresso: {
     name: 'Espresso',
     unitCost: 1.10,
-    available: 10
+    stock: 10
   },
   cocoa: {
     name: 'Cocoa',
     unitCost: 0.90,
-    available: 10
+    stock: 10
   },
   whippedCream: {
     name: 'Whipped Cream',
     unitCost: 1.00,
-    available: 10
+    stock: 10
   },
 }
 
@@ -55,7 +55,7 @@ let menu = {
       cream: 1
     },
     price: 2.75,
-    isAvailable: true
+    inStock: true
   },
   decafCoffee: {
     name: 'Decaf Coffee',
@@ -65,7 +65,7 @@ let menu = {
         cream: 1
     },
     price: 2.75,
-    isAvailable: true
+    inStock: true
   },
   caffeLatte: {
     name: 'Caffe Latte',
@@ -74,7 +74,7 @@ let menu = {
         steamedMilk: 1
     },
     price: 2.55,
-    isAvailable: true
+    inStock: true
   },
   caffeAmericano: {
     name: 'Caffe Americano',
@@ -82,7 +82,7 @@ let menu = {
       espresso: 3
     },
     price: 3.30,
-    isAvailable: true
+    inStock: true
   },
   caffeMocha: {
     name: 'Caffe Mocha',
@@ -93,7 +93,7 @@ let menu = {
       whippedCream: 1
     },
     price: 2.70,
-    isAvailable: true
+    inStock: true
   },
   cappuccino: {
     name: 'Cappuccino',
@@ -103,7 +103,7 @@ let menu = {
       foamedMilk: 1
     },
     price: 2.90,
-    isAvailable: true
+    inStock: true
   }
 }
 
