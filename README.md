@@ -1,3 +1,6 @@
+************** BaristaMatic **************
+
+
 BaristaMatic is a Command Line Coffeeshop built on Node.js.  Users can order availiable drinks, restock inventory, and quit.  After each order, the machine realculates its inventory of ingredients and reprints the menu and updated inventory.
 
 
