@@ -2,6 +2,43 @@ const { printMenu, printInventory } = require('./show');
 const readline = require('readline');
 
 
+const checkIfInStock = (menu, inv) => {
+  for(let drink in menu) {
+    if(menu.hasOwnProperty(drink)) {
+      let ingredients = menu[drink].ingredients
+        for(let ingredient in ingredients) {
+          if(ingredients.hasOwnProperty(ingredient)) {
+            if(ingredients[ingredient] <= inv[ingredient].stock) {
+              menu[drink].inStock = true;
+            } else {
+              menu[drink].inStock = false;
+              break;
+            }
+          }
+        }
+    }
+  }
+}
+
+const restockInventory = (menu, inv) => {
+  for(let ingredient in inv) {
+    if(inv.hasOwnProperty(ingredient)) {
+      inv[ingredient].stock = 10;
+    }
+  }
+  checkIfInStock(menu, inv)
+}
+
+const updateStockAfterOrder = (menu, inv, drink) => {
+  let ingredients = menu[drink].ingredients;
+  for(let ingredient in ingredients) {
+    if(ingredients.hasOwnProperty(ingredient)) {
+      inv[ingredient].stock = inv[ingredient].stock - ingredients[ingredient]
+    }
+  }
+  checkIfInStock(menu, inv)
+}
+
 const prepareOrder = (menu, inv, input) => {
   input = Number(input);
   const drinks = Object.keys(menu).sort();
@@ -9,6 +46,8 @@ const prepareOrder = (menu, inv, input) => {
     let order = menu[drinks[input - 1]]
     if(order.inStock) {
       console.log('DISPENSING: ', `${order.name}`);
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+      updateStockAfterOrder(menu, inv, drinks[input - 1])
       printInventory(inv);
       printMenu(menu);
     } else {
@@ -16,6 +55,22 @@ const prepareOrder = (menu, inv, input) => {
     }
   } else {
     console.log('INVALID SELECTION: ', `${input}`);
+  }
+}
+
+const checkIfInStock = (menu, inv) => {
+  for(let drink in menu) {
+    if(menu.hasOwnProperty(drink)) {
+      let ingredients = menu[drink].ingredients
+        for(let ingredient in ingredients) {
+          if(ingredients.hasOwnProperty(ingredient) && ingredients[ingredient] <= inv[ingredient].stock) {
+            menu[drink].inStock = true;
+          } else {
+            menu[drink].inStock = false;
+            break;
+          }
+        }
+    }
   }
 }
 
@@ -35,6 +90,7 @@ const operateMachine = (menu, inv) => {
       process.exit(0);
     } else {
       prepareOrder(menu, inv, input)
+      checkIfInStock(menu, inv)
     }
     rl.prompt();
   }).on('close', () => {
@@ -43,7 +99,12 @@ const operateMachine = (menu, inv) => {
 }
 
 const restockInventory = (menu, inv) => {
-
+  for(let ingredient in inv) {
+    if(inv.hasOwnProperty(ingredient)) {
+      inv[ingredient].stock = 10;
+    }
+  }
+  checkIfInStock(menu, inv)
 }
 
 

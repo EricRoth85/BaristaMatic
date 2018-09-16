@@ -43,7 +43,7 @@ let inventory = {
     name: 'Whipped Cream',
     unitCost: 1.00,
     stock: 10
-  },
+  }
 }
 
 let menu = {

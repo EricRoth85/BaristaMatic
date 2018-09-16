@@ -6,7 +6,7 @@ const printInventory = (inv) => {
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
   console.log('"Q" to quit');
   console.log('"R" to restock inventory')
-  console.log('~~~~~~~~~~~~~~~~~~~~~~HELLO~~~~~~');
+  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
   console.log('Inventory:');
   Object.keys(inv).sort().forEach(ingr => {
     console.log(`${inv[ingr].name}` + ',' + `${inv[ingr].stock}`);
