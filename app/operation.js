@@ -1,6 +1,7 @@
 const { printMenu, printInventory } = require('./show');
 const readline = require('readline');
-
+const chalk = require('chalk');
+const chalkAnimation = require('chalk-animation');
 
 const checkIfInStock = (menu, inv) => {
   for(let drink in menu) {
@@ -45,32 +46,16 @@ const prepareOrder = (menu, inv, input) => {
   if(input > 0 && input <= drinks.length && !isNaN(input)) {
     let order = menu[drinks[input - 1]]
     if(order.inStock) {
-      console.log('DISPENSING: ', `${order.name}`);
+      console.log(chalk.bgCyan('DISPENSING: ', `${order.name}`));
       console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
       updateStockAfterOrder(menu, inv, drinks[input - 1])
       printInventory(inv);
       printMenu(menu);
     } else {
-      console.log('OUT OF STOCK: ', `${order.name}`);
+      console.log(chalk.red('OUT OF STOCK: ', `${order.name}`));
     }
   } else {
-    console.log('INVALID SELECTION: ', `${input}`);
-  }
-}
-
-const checkIfInStock = (menu, inv) => {
-  for(let drink in menu) {
-    if(menu.hasOwnProperty(drink)) {
-      let ingredients = menu[drink].ingredients
-        for(let ingredient in ingredients) {
-          if(ingredients.hasOwnProperty(ingredient) && ingredients[ingredient] <= inv[ingredient].stock) {
-            menu[drink].inStock = true;
-          } else {
-            menu[drink].inStock = false;
-            break;
-          }
-        }
-    }
+    console.log(chalk.red('INVALID SELECTION: ', `${input}`));
   }
 }
 
@@ -83,6 +68,15 @@ const operateMachine = (menu, inv) => {
     input = input.trim();
     if(input === 'r' || input === 'R') {
       console.log('Restocking BaristaMatic...');
+      restockInventory(menu, inv);
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+      console.log(chalk.blueBright('Welcome BACK to the RESTOCKED BaristaMatic!'));
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+      console.log(chalk.greenBright('Please Enter an Order Below'));
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+      console.log('"Q" to quit');
+      console.log('"R" to restock inventory')
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
       printMenu(menu);
       printInventory(inv);
     } else if(input === 'Q' || input === 'q') {
@@ -90,7 +84,6 @@ const operateMachine = (menu, inv) => {
       process.exit(0);
     } else {
       prepareOrder(menu, inv, input)
-      checkIfInStock(menu, inv)
     }
     rl.prompt();
   }).on('close', () => {
@@ -98,16 +91,9 @@ const operateMachine = (menu, inv) => {
   });
 }
 
-const restockInventory = (menu, inv) => {
-  for(let ingredient in inv) {
-    if(inv.hasOwnProperty(ingredient)) {
-      inv[ingredient].stock = 10;
-    }
-  }
-  checkIfInStock(menu, inv)
-}
-
-
 module.exports = {
-  operateMachine
+  operateMachine,
+  checkIfInStock,
+  restockInventory,
+  updateStockAfterOrder
 };
