@@ -4,7 +4,6 @@
   "description": "A simulator of an automatic coffee dispensing machine",
   "main": "index.js",
   "scripts": {
-
     "start": "node app/index.js"
   },
   "keywords": [
@@ -13,7 +12,6 @@
   "author": "Eric Roth",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^2.4.1",
-    "clear": "^0.1.0"
+    "chalk": "^2.4.1"
   }
 }
