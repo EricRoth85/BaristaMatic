@@ -1,7 +1,6 @@
 const { printMenu, printInventory } = require('./show');
 const readline = require('readline');
 const chalk = require('chalk');
-const chalkAnimation = require('chalk-animation');
 
 const checkIfInStock = (menu, inv) => {
   for(let drink in menu) {
